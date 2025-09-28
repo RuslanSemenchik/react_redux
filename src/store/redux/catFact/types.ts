@@ -1,6 +1,7 @@
 export interface CatFact {
   id: string
   fact: string
+  
 }
 
 export interface CatFactSliceState {

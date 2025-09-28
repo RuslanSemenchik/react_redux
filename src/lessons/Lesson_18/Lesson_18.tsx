@@ -28,6 +28,8 @@ function Lesson_18() {
     dispatch(catFactSliceActions.getCatFact())
   }
 
+  
+
   useEffect(() => {
     if (error) {
       alert(error)
