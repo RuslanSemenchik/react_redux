@@ -12,7 +12,7 @@ function Homework_18() {
 
  )
  const getJoke = ()=>{
-    dispatch(jokeSliceActions.getJoke())
+    dispatch(jokeSliceActions.getJoke("Some Foto"))
  }
  
  useEffect(() => {
