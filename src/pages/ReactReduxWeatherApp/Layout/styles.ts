@@ -1,11 +1,14 @@
 import styled from "@emotion/styled"
 import { NavLink } from "react-router-dom"
 
+
+
 export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: #112233;
+   background: url("./") center/cover no-repeat;
+
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 `
 

@@ -73,7 +73,6 @@ deleteAllJokes: create.reducer(
     ),
 
 
-
 }),
 
 selectors: {

@@ -44,13 +44,12 @@ export const CardInfoCountry = styled.p`
 export const CardInfoIcon = styled.img`
  display: flex;
   gap: 16px;
-  font-size: 16;
+  font-size: 4;
 `
 
 
 export const InputsContainer = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 30px;
 `
 export const ButtonControl = styled.div`
@@ -58,3 +57,14 @@ export const ButtonControl = styled.div`
   height : 70px;
 `
 
+export const IconsContainer = styled.div`
+  display: flex;
+  gap: 30px;
+`
+
+export const Loading = styled.p`
+  font-size: 15px;
+  
+  color: rgba(108, 108, 108, 1);
+
+`

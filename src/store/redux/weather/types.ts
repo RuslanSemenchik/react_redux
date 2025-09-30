@@ -1,5 +1,5 @@
 export interface Weather {
-  id: number,
+  id: string,
   name: string,
   country: string,
   temp: number,
@@ -7,8 +7,12 @@ export interface Weather {
 };
 
 export interface WeatherSliceState {
- 
+  searchWeather? : Weather | undefined,
   weathers: Weather [],
-  error : string | undefined,
+  error : WeatherError | undefined,
   isFetching: boolean,
+}
+export interface WeatherError {
+  cod: string;
+  message: string;
 }
