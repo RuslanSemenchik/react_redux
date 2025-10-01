@@ -1,16 +1,39 @@
 import styled from "@emotion/styled"
 
-export const CardWrapper = styled.div`
+export const HomeWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex: 1;
   color: black;
 `
 
+export const SearchForm = styled.form`
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 600px;
+
+`
+export const InputForm = styled.div`
+  flex: 1;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.1);
+  
+`
+
+
+
+
+
 export const CardContainer = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 590px;
   min-height: 450px;
   max-height: fit-content;
@@ -44,22 +67,14 @@ export const CardInfoCountry = styled.p`
 export const CardInfoIcon = styled.img`
  display: flex;
   gap: 16px;
-  font-size: 4;
+  height: 74px;
+  width: 74px;
 `
 
-
-export const InputsContainer = styled.div`
-  display: flex;
-  gap: 30px;
-`
-export const ButtonControl = styled.div`
-  min-width: 100px;
-  height : 70px;
-`
 
 export const IconsContainer = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 5px;
 `
 
 export const Loading = styled.p`

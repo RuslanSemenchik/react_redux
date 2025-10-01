@@ -1,16 +1,17 @@
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import Button from "components/Button/Button"
-import Input from "components/Input/Input"
+import WeatherButton from "components/WeatherButton/WeatherButton"
+import InputSearchForm from "components/InputSearchForm/InputSearchForm"
 import {
+  SearchForm,
   CardContainer,
   CardInfoCountry,
   CardInfoIcon,
-  ButtonControl,
-  CardWrapper,
+  
+  HomeWrapper,
   CardInfoTemp,
   CardInfoCity,
-  InputsContainer,
+
   IconsContainer,
   Loading
 } from "./styles"
@@ -53,10 +54,10 @@ function Home() {
 
 
   return (
-    <CardWrapper>
-      <CardContainer onSubmit={formik.handleSubmit}>
-        <InputsContainer>
-          <Input
+    <HomeWrapper>
+      <SearchForm onSubmit={formik.handleSubmit}>
+        
+          <InputSearchForm
             id="inputCity-id"
             name="inputCity"
             type="text"
@@ -65,10 +66,16 @@ function Home() {
             value={formik.values.inputCity}
             onChange={formik.handleChange}
           />
-        </InputsContainer>
-        <Button name="Search" type="submit" disabled={isFetching} />
+      
+        <WeatherButton 
+        name="Search" 
+        type="submit" 
+        disabled={isFetching}
+        isBlue 
+        />
          {isFetching && <Loading>Loading...</Loading>}
-      </CardContainer>
+       
+      </SearchForm>
 
       {searchWeather && (
         <CardContainer>
@@ -89,37 +96,37 @@ function Home() {
       return <IconsContainer>{icons}</IconsContainer>
     })()}
           <CardInfoCountry>{searchWeather.country}</CardInfoCountry>
-          <ButtonControl>
-            <Button
+         
+            <WeatherButton
               onClick={() =>
                 dispatch(weatherActions.saveWeather(searchWeather))
               }
               name="Save"
+            
             />
-          </ButtonControl>
-          <ButtonControl>
-            <Button
+          
+          
+            <WeatherButton
               onClick={() => dispatch(weatherActions.deleteSearchWeather())}
               name="Delete"
-              isRed
+              
             />
-          </ButtonControl>
+          
         </CardContainer>
       )}
       {error && (
         <CardContainer>
           <CardInfoCity> {error.cod}</CardInfoCity>
           <CardInfoCountry>{error.message}</CardInfoCountry>
-          <ButtonControl>
-            <Button
+          
+            <WeatherButton
               onClick={() => dispatch(weatherActions.deleteError())}
               name="Delete"
-              isRed
+             
             />
-          </ButtonControl>
         </CardContainer>
       )}
-    </CardWrapper>
+    </HomeWrapper>
   )
 }
 

@@ -1,51 +1,54 @@
 import styled from "@emotion/styled"
 import { NavLink } from "react-router-dom"
-
+import background   from "../assets/background.jpg"
 
 
 export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-   background: url("./") center/cover no-repeat;
-
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+   background-image: url(${background}) ;
+   background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Inter", sans-serif;
 `
 
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100px;
-  background-color: white;
-  padding: 47px 81px;
-  color: black;
-  border: 2px solid black;
+  height: 80px;
+  background: linear-gradient(0deg, rgba(18, 45, 77, 0.5), rgba(18, 45, 77, 0.5)),
+ linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(17.799999237060547px);
+  padding-right: 85px;
+  padding-left: 85px;
+  border-bottom: 1px solid rgba(210, 210, 210, 1)
 `
 
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  color: darkblue;
+  color: white;
   height: 100%;
   width: fit-content;
   cursor: pointer;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 24px;
+
 `
 
 export const NavigationContainer = styled.nav`
   display: flex;
-  gap: 45px;
+  gap: 63px;
   height: 100%;
   align-items: center;
+
 `
 export const HeaderLink = styled(NavLink)`
-  color: black;
-  font-size: 28px;
-  font-weight: normal;
+  font-size: 20px;
   text-decoration: none;
-  color: #000000;
+  color: white;
 `
 
 export const Main = styled.main`
@@ -54,10 +57,11 @@ export const Main = styled.main`
   padding: 50px;
   align-items: center;
   justify-content: center;
-  background-color: #112233;
+   background-image: url(${background}) ;
+  
 `
 
 export const navlinkProps = (isActive: boolean) => ({
   fontWeight: isActive ? "bold" : "normal",
-  textDecoration: isActive ? "underline" : "none",
+  textDecoration: "none",
 })
