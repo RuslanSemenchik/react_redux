@@ -7,6 +7,7 @@ function WeatherButton({
   onClick = () => {},
   children,
   isBlue = false,
+  isWidth =false,
   disabled = false,
 }: ButtonProps) {
   return (
@@ -15,6 +16,7 @@ function WeatherButton({
       $isBlue={isBlue}
       onClick={onClick}
       type={type}
+      $isWidth ={isWidth}
     >
       {/* Улосвный рендеринг */}
       {!children && name}

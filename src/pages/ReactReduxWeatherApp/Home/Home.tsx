@@ -4,17 +4,20 @@ import WeatherButton from "components/WeatherButton/WeatherButton"
 import InputSearchForm from "components/InputSearchForm/InputSearchForm"
 import {
   SearchForm,
-  CardContainer,
-  CardInfoCountry,
+  WeatherCard,
+  ErrorContainer,
+  ErrorCodText,
   CardInfoIcon,
-  
+  ErrorMessageText,
+  ButtonContainer,
   HomeWrapper,
   CardInfoTemp,
   CardInfoCity,
-
+  TempCityContainer,
+  TempCityIconsContainer,
   IconsContainer,
-  Loading
-} from "./styles"
+  Loading,
+} from "../styles/pagestyles"
 
 import { useAppDispatch, useAppSelector } from "store/hooks"
 import {
@@ -51,80 +54,78 @@ function Home() {
     },
   })
 
-
-
   return (
     <HomeWrapper>
       <SearchForm onSubmit={formik.handleSubmit}>
-        
-          <InputSearchForm
-            id="inputCity-id"
-            name="inputCity"
-            type="text"
-            placeholder="Enter your city"
-            label=""
-            value={formik.values.inputCity}
-            onChange={formik.handleChange}
-          />
-      
-        <WeatherButton 
-        name="Search" 
-        type="submit" 
-        disabled={isFetching}
-        isBlue 
+        <InputSearchForm
+          id="inputCity-id"
+          name="inputCity"
+          type="text"
+          placeholder="Enter your city"
+          label=""
+          value={formik.values.inputCity}
+          onChange={formik.handleChange}
         />
-         {isFetching && <Loading>Loading...</Loading>}
-       
+
+        <WeatherButton
+          name="Search"
+          type="submit"
+          disabled={isFetching}
+          isBlue
+        />
+        {isFetching && <Loading>Loading...</Loading>}
       </SearchForm>
 
       {searchWeather && (
-        <CardContainer>
-          <CardInfoTemp>{searchWeather.temp}°C</CardInfoTemp>
-          <CardInfoCity>{searchWeather.name}</CardInfoCity>
-    {(() => {
-      const icons = []
-      for (let i = 0; i < 3; i++) {
-        icons.push(
-          <CardInfoIcon
-            key={i}
-            src={`http://openweathermap.org/img/w/${searchWeather.icon}.png`}
-            alt={searchWeather.name}
-            title={searchWeather.name}
-          />
-        )
-      }
-      return <IconsContainer>{icons}</IconsContainer>
-    })()}
-          <CardInfoCountry>{searchWeather.country}</CardInfoCountry>
-         
+        <WeatherCard>
+          <TempCityIconsContainer>
+            <TempCityContainer>
+              <CardInfoTemp>
+                {Number(searchWeather.temp.toFixed(0))}°
+              </CardInfoTemp>
+              <CardInfoCity>{`${searchWeather.name}  ${searchWeather.country}`}</CardInfoCity>
+            </TempCityContainer>
+
+            {(() => {
+              const icons = []
+              for (let i = 0; i < 3; i++) {
+                icons.push(
+                  <CardInfoIcon
+                    key={i}
+                    src={`http://openweathermap.org/img/w/${searchWeather.icon}.png`}
+                    alt={searchWeather.name}
+                    title={searchWeather.name}
+                  />,
+                )
+              }
+              return <IconsContainer>{icons}</IconsContainer>
+            })()}
+          </TempCityIconsContainer>
+          <ButtonContainer>
             <WeatherButton
               onClick={() =>
                 dispatch(weatherActions.saveWeather(searchWeather))
               }
               name="Save"
-            
             />
-          
-          
             <WeatherButton
               onClick={() => dispatch(weatherActions.deleteSearchWeather())}
               name="Delete"
-              
             />
-          
-        </CardContainer>
+          </ButtonContainer>
+        </WeatherCard>
       )}
       {error && (
-        <CardContainer>
-          <CardInfoCity> {error.cod}</CardInfoCity>
-          <CardInfoCountry>{error.message}</CardInfoCountry>
-          
-            <WeatherButton
-              onClick={() => dispatch(weatherActions.deleteError())}
-              name="Delete"
-             
-            />
-        </CardContainer>
+        <WeatherCard>
+          <ErrorContainer>
+            <ErrorCodText> {error.cod}</ErrorCodText>
+            <ErrorMessageText>{error.message}</ErrorMessageText>
+          </ErrorContainer>
+          <WeatherButton
+            onClick={() => dispatch(weatherActions.deleteError())}
+            name="Delete"
+          />
+        </WeatherCard>
       )}
     </HomeWrapper>
   )

@@ -2,13 +2,24 @@ import styled from "@emotion/styled";
 
 interface ButtonComponentProps {
   $isBlue: boolean;
+  $isWidth:boolean
 }
+
+const generateButtonWidth = (isBlue: boolean, isWidth: boolean) => {
+  if (isBlue&&isWidth) {
+    return "100%";
+  }  else if (isBlue) {
+      return "146px";
+    } else {
+      return "155px";
+    }
+  };
 
 const generateButtonBorder = (isBlue: boolean) => {
   if (isBlue) {
     return "none";
   } else {
-      return "1px solid rgba(23, 23, 23, 1)";
+      return "1px solid rgba(248, 243, 243, 1)";
     }
   };
 
@@ -27,9 +38,14 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
   align-items: center;
   justify-content: center;
   outline: none;
+width: ${({$isBlue, $isWidth}) =>
+generateButtonWidth($isBlue,$isWidth)} ;
+
+
+
   border: ${({ $isBlue }) =>
   generateButtonBorder($isBlue)};
-  width: ${({ $isBlue }) => ($isBlue ? "146px" : "155px")};
+  /* width: ${({ $isBlue }) => ($isBlue ? "146px" : "155px")}; */
   height: 48px;
   border-radius: 50px;
   background-color: ${({ $isBlue}) =>

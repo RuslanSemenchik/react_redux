@@ -54,9 +54,9 @@ export const HeaderLink = styled(NavLink)`
 export const Main = styled.main`
   display: flex;
   flex: 1;
-  padding: 50px;
+  
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
    background-image: url(${background}) ;
   
 `
